@@ -2,7 +2,7 @@
   class="example-form"
   [formGroup]="angFormInfo"
   (ngSubmit)="onFormSubmit()"
->
+><!-- na7iha el ngSubmit w e5demha fel button-->
   <div formGroupName="presonalInfo">
     <mat-form-field class="example-full-width">
       <mat-label>Nom</mat-label>
@@ -77,11 +77,28 @@
     </mat-form-field>
     <br />
   </div>
+<div class="row">
+  <div class="col-md-6 text-left">
+    <h1>Professional Experience</h1>
+  </div>
+  <div class="col-md-6 text-right">
+    <button
+    type="button"
+    (click)="addNameField()"
+    class="btn btn-success mx-2"
+    [ngClass]="'pad'"
+  >
+    + <!-- el + hedhi rodha e5demha bel material-icons-->
+  </button>
+  </div>
+</div>
+
+
 
   <div formArrayName="exps">
-    <div *ngFor="let exp of exps.controls; index as idx" class="form-group">
-      <div [formControlName]="idx">
-        <div [formGroup]="newExp">
+    <!-- stanna la7dha ena 9a3ed nsayeb fel bhema :p --> 
+    <div *ngFor="let exp of allExps.controls; let i = index" class="form-group">
+      <div [formGroupName]="i">
           <mat-form-field>
             <mat-label>Post</mat-label>
             <input matInput formControlName="post" />
@@ -116,27 +133,20 @@
             ></mat-datepicker-toggle>
             <mat-datepicker #pickerEnd></mat-datepicker>
           </mat-form-field>
+          
           <button
             type="button"
-            (click)="addNameField()"
-            class="btn btn-success mx-2"
-            [ngClass]="'pad'"
-          >
-            +
-          </button>
-          <button
-            type="button"
-            (click)="deleteNameField(idx)"
+            (click)="deleteNameField(i)"
             class="btn btn-danger"
           >
             -
           </button>
           <br />
+          <!--Mate5demech bel label n7eb kol input ta7tou erreur mte3ou w e5demha bel <mat-error></mat-error>-->
           <label *ngIf="exp.invalid" [ngClass]="'error'">
             Exp is required.
           </label>
           <!-- <br> -->
-        </div>
       </div>
     </div>
   </div>
@@ -146,7 +156,7 @@
       <mat-form-field class="example-chip-list">
         <mat-chip-list #chipList aria-label="skill selection">
           <mat-chip
-            *ngFor="let skill of skills"
+            *ngFor="let skill of newSkill"
             [selectable]="selectable"
             [removable]="removable"
             (removed)="remove(skill)"
@@ -179,6 +189,6 @@
     </div>
   </div>
   <div>
-    <button type="submit" class="btn btn-primary">Send</button>
+    <button type="submit" class="btn btn-primary" >Send</button>
   </div>
 </form>
