@@ -1,142 +1,184 @@
+<form
+  class="example-form"
+  [formGroup]="angFormInfo"
+  (ngSubmit)="onFormSubmit()"
+>
+  <div formGroupName="presonalInfo">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nom</mat-label>
+      <input #box matInput formControlName="nom" />
+      <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
+      <mat-error *ngIf="angFormInfo.hasError('nom', 'nom')">
+        Please enter a valid Nom
+      </mat-error>
+      <mat-error *ngIf="angFormInfo.hasError('required', 'nom')">
+        Nom is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-<form class="example-form" [formGroup]="angFormInfo" >
-  <mat-form-field class="example-full-width">
-    <mat-label>Nom</mat-label>
-    <input #box  matInput formControlName="nom">
-    <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
-    <mat-error *ngIf="angFormInfo. hasError ('nom','nom')" >
-      Please enter a valid Nom
-    </mat-error>
-    <mat-error *ngIf="angFormInfo.hasError('required','nom')">
-      Nom is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field class="example-full-width pl-2">
+      <mat-label>Prenom</mat-label>
+      <input #box matInput formControlName="prenom" />
+      <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
+      <mat-error *ngIf="angFormInfo.hasError('prenom', 'prenom')">
+        Please enter a valid Prenom address
+      </mat-error>
+      <mat-error *ngIf="angFormInfo.hasError('required', 'prenom')">
+        Prenom is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
 
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input #box matInput formControlName="email" />
+      <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
+      <mat-error *ngIf="angFormInfo.hasError('email', 'email')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="angFormInfo.hasError('required', 'email')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field class="example-full-width pl-2">
-    <mat-label>Prenom</mat-label>
-    <input #box  matInput formControlName="prenom">
-    <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
-    <mat-error *ngIf="angFormInfo. hasError ('prenom','prenom')" >
-      Please enter a valid Prenom address
-    </mat-error>
-    <mat-error *ngIf="angFormInfo.hasError('required','prenom')">
-      Prenom is <strong>required</strong>
-    </mat-error>
-  </mat-form-field> <br>
-
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input #box  matInput formControlName="email">
-    <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
-    <mat-error *ngIf="angFormInfo. hasError ('email','email')" >
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="angFormInfo.hasError('required','email')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width pl-2">
-    <mat-label>Tel</mat-label>
-    <input #box  matInput formControlName="tel">
-    <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
-    <mat-error *ngIf="angFormInfo. hasError ('tel','tel')" >
-      Please enter a valid Tel number
-    </mat-error>
-    <mat-error *ngIf="angFormInfo.hasError('required','tel')">
-      Tel is <strong>required</strong>
-    </mat-error>
-  </mat-form-field> <br>
+    <mat-form-field class="example-full-width pl-2">
+      <mat-label>Tel</mat-label>
+      <input #box matInput formControlName="tel" />
+      <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
+      <mat-error *ngIf="angFormInfo.hasError('tel', 'tel')">
+        Please enter a valid Tel number
+      </mat-error>
+      <mat-error *ngIf="angFormInfo.hasError('required', 'tel')">
+        Tel is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
 
     <mat-form-field class="example-full-width">
       <mat-label>Adress</mat-label>
-      <input #box  matInput formControlName="adresse">
+      <input #box matInput formControlName="adresse" />
       <!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
-      <mat-error *ngIf="angFormInfo. hasError ('adresse','adresse')" >
+      <mat-error *ngIf="angFormInfo.hasError('adresse', 'adresse')">
         Please enter a valid Adress
       </mat-error>
-      <mat-error *ngIf="angFormInfo.hasError('required','adresse')">
+      <mat-error *ngIf="angFormInfo.hasError('required', 'adresse')">
         Adress is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="pl-2">
       <mat-label>Date de Naissance</mat-label>
-      <input matInput [matDatepicker]="pickerBirth">
-      <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
+      <input matInput [matDatepicker]="pickerBirth" />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerBirth"
+      ></mat-datepicker-toggle>
       <mat-datepicker #pickerBirth></mat-datepicker>
-    </mat-form-field> <br>
-    
-  </form>
-    
+    </mat-form-field>
+    <br />
+  </div>
 
-
-<div>
-  <form [formGroup] = "angForm" (ngSubmit)="onFormSubmit()">
-    <div formArrayName="exps">
-      <div *ngFor="let exp of exps.controls; index as idx" class="form-group">
-        <mat-form-field>
-          <mat-label>Post</mat-label>
-          <input matInput  [formControlName]="idx">
-        </mat-form-field>
-        <mat-form-field class="px-2">
-          <mat-label>Societe</mat-label>
-          <input matInput >
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Date debut</mat-label>
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="pl-2">
-          <mat-label>Date fin</mat-label>
-          <input matInput [matDatepicker]="pickerEnd">
-          <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-          <mat-datepicker #pickerEnd></mat-datepicker>
-        </mat-form-field>
-        <button type="button" (click)="addNameField()" class="btn btn-success mx-2" 
-        [ngClass] = "'pad'"> + </button>
-        <button type="button" (click)="deleteNameField(idx)" class="btn btn-danger"> - </button>
-        <br>
-        <label *ngIf="exp.invalid" [ngClass] = "'error'"> Exp is required. </label> 
-        <!-- <br> -->
+  <div formArrayName="exps">
+    <div *ngFor="let exp of exps.controls; index as idx" class="form-group">
+      <div [formControlName]="idx">
+        <div [formGroup]="newExp">
+          <mat-form-field>
+            <mat-label>Post</mat-label>
+            <input matInput formControlName="post" />
+          </mat-form-field>
+          <mat-form-field class="px-2">
+            <mat-label>Societe</mat-label>
+            <input matInput formControlName="societe" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Date debut</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dateDebut"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="pl-2">
+            <mat-label>Date fin</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerEnd"
+              formControlName="dateFin"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerEnd"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+          </mat-form-field>
+          <button
+            type="button"
+            (click)="addNameField()"
+            class="btn btn-success mx-2"
+            [ngClass]="'pad'"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            (click)="deleteNameField(idx)"
+            class="btn btn-danger"
+          >
+            -
+          </button>
+          <br />
+          <label *ngIf="exp.invalid" [ngClass]="'error'">
+            Exp is required.
+          </label>
+          <!-- <br> -->
+        </div>
       </div>
-    </div> 
-    <!-- <div>
-      <button type="submit" class="btn btn-primary">Send</button>
-    </div> -->
-  </form>
+    </div>
   </div>
-<div class="row">
-  <div class="col-12">
 
-    <mat-form-field class="example-chip-list">
-      <mat-chip-list #chipList aria-label="skill selection">
-        <mat-chip
-        *ngFor="let skill of skills"
-        [selectable]="selectable"
-        [removable]="removable"
-        (removed)="remove(skill)">
-        {{skill}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input
-      placeholder="New skill..."
-      #skillInput
-      [formControl]="skillCtrl"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let skill of filteredskills | async" [value]="skill">
-        {{skill}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList aria-label="skill selection">
+          <mat-chip
+            *ngFor="let skill of skills"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(skill)"
+          >
+            {{ skill }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="New skill..."
+            #skillInput
+            [formControl]="skillCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-list>
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let skill of filteredskills | async"
+            [value]="skill"
+          >
+            {{ skill }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
   </div>
-</div>
+  <div>
+    <button type="submit" class="btn btn-primary">Send</button>
+  </div>
+</form>

@@ -15,38 +15,47 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms'
 export class AppComponent {
   title = 'cv';
 
-  angFormInfo = new FormGroup({
-    nom: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$")]),
-    prenom: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$")]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    tel: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8),
-      Validators.pattern("^[0-9]$")]),
-    adresse: new FormControl('', [Validators.required, Validators.minLength(4)]),
+  newExp = new FormGroup ({
     
+    post: new FormControl('', [Validators.required]),
+    societe: new FormControl('', [Validators.required]),
+    dateDebut: new FormControl('', [Validators.required]),
+    dateFin: new FormControl('', [Validators.required])
+  })
+
+
+  angFormInfo = new FormGroup({
+    presonalInfo: new FormGroup({
+
+      nom: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$")]),
+      prenom: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z]+$")]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      tel: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8),
+        Validators.pattern("^[0-9]$")]),
+      adresse: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    }),
+    exps: new FormArray([this.newExp]),
+    skills: new FormArray([])  
   });
 
+  
   
 
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   
-  angForm = new FormGroup({
-    exps: new FormArray([
-      new FormControl('', Validators.required)
-    ])
-  });
 
   get exps(): FormArray {
-    return this.angForm.get('exps') as FormArray;
+    return this.angFormInfo.get('exps') as FormArray;
   }
   onFormSubmit(): void {
-    for (let i = 0; i < this.exps.length; i++) {
-      console.log(this.exps.at(i).value);
-    }
+    
+      console.log(this.angFormInfo.value);
+    
   }
   addNameField() {
-    this.exps.push(new FormControl('', Validators.required));
+    this.exps.push(this.newExp);
   }
 
   deleteNameField(index: number) {
