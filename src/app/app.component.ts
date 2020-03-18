@@ -23,6 +23,9 @@ export class AppComponent implements OnInit {
   get allExps(): FormArray {
     return this.angFormInfo.get('exps') as FormArray;
   }
+  get getSkills() {
+    return this.angFormInfo.get('skills') as FormArray;
+  }
   onFormSubmit(): void {
     
       console.log(this.angFormInfo.value);
@@ -70,7 +73,6 @@ export class AppComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   skillCtrl = new FormControl();
   filteredskills: Observable<string[]>;
-  newSkill: string[] = [];
   allskills: string[] = ['HTML', 'CSS', 'Javascript', 'Angular', 'MangoDB', 'Java'];
 
   @ViewChild('skillInput') skillInput: ElementRef<HTMLInputElement>;
@@ -83,19 +85,13 @@ export class AppComponent implements OnInit {
   }
 
   
-
-  // get skills(){
-  //   return this.angFormInfo.get('skills') as FormArray
-  // }
-  
-
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
     // Add our skill
     if ((value || '').trim()) {
-      this.newSkill.push(value.trim());
+      this.getSkills.push(new FormControl(value.trim()));
     }
 
     // Reset the input value
@@ -106,16 +102,14 @@ export class AppComponent implements OnInit {
     this.skillCtrl.setValue(null);
   }
 
-  remove(skill: string): void {
-    const index = this.newSkill.indexOf(skill);
-
-    if (index >= 0) {
-      this.newSkill.splice(index, 1);
+  remove(i): void {
+    if (i >= 0) {
+      this.getSkills.removeAt(i);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.newSkill.push(event.option.viewValue);
+    this.getSkills.push(new FormControl(event.option.viewValue));
     this.skillInput.nativeElement.value = '';
     this.skillCtrl.setValue(null);
   }

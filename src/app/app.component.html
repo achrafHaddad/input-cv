@@ -1,8 +1,8 @@
+<div class="container">
 <form
   class="example-form"
   [formGroup]="angFormInfo"
-  (ngSubmit)="onFormSubmit()"
-><!-- na7iha el ngSubmit w e5demha fel button-->
+  (ngSubmit)="onFormSubmit()">
   <div formGroupName="presonalInfo">
     <mat-form-field class="example-full-width">
       <mat-label>Nom</mat-label>
@@ -85,10 +85,10 @@
     <button
     type="button"
     (click)="addNameField()"
-    class="btn btn-success mx-2"
+    class="btn btn-success mx-2 material-icons"
     [ngClass]="'pad'"
   >
-    + <!-- el + hedhi rodha e5demha bel material-icons-->
+    add
   </button>
   </div>
 </div>
@@ -96,7 +96,6 @@
 
 
   <div formArrayName="exps">
-    <!-- stanna la7dha ena 9a3ed nsayeb fel bhema :p --> 
     <div *ngFor="let exp of allExps.controls; let i = index" class="form-group">
       <div [formGroupName]="i">
           <mat-form-field>
@@ -137,16 +136,14 @@
           <button
             type="button"
             (click)="deleteNameField(i)"
-            class="btn btn-danger"
+            class="btn btn-danger ml-2 material-icons"
           >
-            -
+            remove
           </button>
           <br />
-          <!--Mate5demech bel label n7eb kol input ta7tou erreur mte3ou w e5demha bel <mat-error></mat-error>-->
-          <label *ngIf="exp.invalid" [ngClass]="'error'">
+          <mat-error *ngIf="exp.invalid" [ngClass]="'error'">
             Exp is required.
-          </label>
-          <!-- <br> -->
+          </mat-error>
       </div>
     </div>
   </div>
@@ -156,12 +153,12 @@
       <mat-form-field class="example-chip-list">
         <mat-chip-list #chipList aria-label="skill selection">
           <mat-chip
-            *ngFor="let skill of newSkill"
+            *ngFor="let skill of getSkills.controls; let i = index"
             [selectable]="selectable"
             [removable]="removable"
-            (removed)="remove(skill)"
+            (removed)="remove(i)"
           >
-            {{ skill }}
+            {{ skill.value }}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
           <input
@@ -192,3 +189,4 @@
     <button type="submit" class="btn btn-primary" >Send</button>
   </div>
 </form>
+</div>
