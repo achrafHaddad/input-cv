@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       post: new FormControl('', [Validators.required]),
       societe: new FormControl('', [Validators.required]),
       dateDebut: new FormControl('', [Validators.required]),
-      dateFin: new FormControl('', [Validators.required])// zidni condition fel html mouch lenna elli date fin dima akber mel date debut
+      dateFin: new FormControl('', [Validators.required])
     })
   }
   addNameField() {
